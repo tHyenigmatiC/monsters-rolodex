@@ -1,17 +1,42 @@
 .card-container{
     display: flex;
     flex-direction: column;
-    background-color: #95dada;
-    border: 1px solid grey;
+    background: linear-gradient(
+    to left,
+    rgba(7, 27, 82, 1) 0%,
+    rgba(0, 128, 128, 1) 100%
+  );
+    border: 1px dotted white;
     border-radius: 5px;
-    padding: 25px;
+    padding: 18px;
     cursor: pointer;
     -moz-osx-font-smoothing: grayscale;
     backface-visibility: hidden;
     transform: translateZ(0);
     transition: transform 0.25s ease-out;
+    color: white;
 }
 
 .card-container:hover{
     transform: scale(1.05 );
+}
+
+@media screen and (max-width: 768px) {
+    .card-container{
+        width: 34vw;
+    }
+    h2{
+        font-size: 18px;
+        margin-block-end: 0.2em;
+    }
+
+    p{
+        margin-block-start: 0.3em;
+        margin-block-end: 0.1em;
+        line-break: anywhere;
+    }
+
+    .card-container:hover{
+        transform: unset;
+    }
 }

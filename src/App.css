@@ -1,5 +1,6 @@
 body {
-  padding: 15px 0;
+  padding: 32px 0px;
+  font-family: 'Itim', sans-serif;
 }
 
 .App {
@@ -7,7 +8,30 @@ body {
 }
 
 h1 {
-  font-family: 'Bigelow Rules', cursive;;
+  font-family: 'Rubik Marker Hatch', sans-serif;
   font-size: 72px;
   color: #0ccac4;
+  margin-block-start: 0;
+  margin-block-end: 0.3em;
+}
+
+.header {
+  background-color: transparent;
+  width: 84vw;
+  padding: 16px 0px 8px;
+  margin: 0px auto 32px;
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1200px) {
+  h1 {
+    font-size: 56px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  h1 {
+    font-size: 48px;
+  }
 }

@@ -6,10 +6,12 @@ import './search-box.styles.css';
 // Lifting state up
 
 export const SearchBox = ({ placeholder, handleChange }) => (
-    <input
-        className="search"
-        type="search"
-        placeholder={placeholder}
-        onChange={handleChange}
-    />
+    <form>
+        <input
+            className="search"
+            type="search"
+            placeholder={placeholder}
+            onChange={handleChange}
+        />
+    </form>
 )
