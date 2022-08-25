@@ -5,13 +5,16 @@ import './search-box.styles.css';
 
 // Lifting state up
 
-export const SearchBox = ({ placeholder, handleChange }) => (
+const SearchBox = ({ placeholder, handleChange }) => (
     <form>
         <input
             className="search"
             type="search"
+            aria-label="search-input"
             placeholder={placeholder}
             onChange={handleChange}
         />
     </form>
 )
+
+export default SearchBox;

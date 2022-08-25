@@ -2,8 +2,9 @@ import { Component } from "react";
 import "./App.css";
 
 // custom imports
-import { SearchBox } from "./components/search-box/search-box.component";
-import { CardList } from "./components/card-list/card-list.component";
+import SearchBox from "./components/search-box/search-box.component";
+import CardList from "./components/card-list/card-list.component";
+import CounterButton from "./components/counter-button/counter-button.component";
 
 class App extends Component {
   constructor() {
@@ -37,6 +38,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="header">
+          <CounterButton/>
           <h1>Monsters Rolodex</h1>
           <SearchBox 
             placeholder="Search Monsters"

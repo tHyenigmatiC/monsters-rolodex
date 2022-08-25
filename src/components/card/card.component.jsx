@@ -3,10 +3,12 @@ import React from 'react';
 // custom imports
 import './card.styles.css';
 
-export const Card = ({ monster }) => (
+const Card = ({ id, name, email }) => (
     <div className='card-container'>
-        <img alt="monster" src={`https://robohash.org/${monster.id}?set=set1&size=180x180`} />
-        <h2 key={monster.id}>{monster.name}</h2>
-        <p> {monster.email} </p>
+        <img alt="monster" src={`https://robohash.org/${id}?set=set1&size=180x180`} />
+        <h2 key={id}>{name}</h2>
+        <p> {email} </p>
     </div>
 );
+
+export default Card;
