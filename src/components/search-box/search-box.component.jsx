@@ -5,7 +5,7 @@ import './search-box.styles.css';
 
 // Lifting state up
 
-export const SearchBox = ({ placeholder, handleChange }) => (
+const SearchBox = ({ placeholder, handleChange }) => (
     <form>
         <input
             className="search"
@@ -15,3 +15,5 @@ export const SearchBox = ({ placeholder, handleChange }) => (
         />
     </form>
 )
+
+export default SearchBox;

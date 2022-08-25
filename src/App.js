@@ -1,51 +1,52 @@
-import { Component } from "react";
+import { useState } from "react";
 import "./App.css";
 
 // custom imports
-import { SearchBox } from "./components/search-box/search-box.component";
-import { CardList } from "./components/card-list/card-list.component";
+import SearchBox from "./components/search-box/search-box.component";
+import CardList from "./components/card-list/card-list.component";
+import { useGetMonstersQuery } from "./redux/apiSlice";
 
-class App extends Component {
-  constructor() {
-    super();
+const App = () => {
+  const [searchField, setSearchField] = useState('');
+  const {
+    data: monsters = [],
+    isLoading,
+    isSuccess,
+    isError,
+    error
+  } = useGetMonstersQuery();
 
-    this.state = {
-      monsters: [],
-      searchField: "",
-    };
+  const handleChange = (e) => {
+    setSearchField(e.target.value);
   }
 
-  componentDidMount() {
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then((response) => response.json())
-      .then((users) => this.setState({ monsters: users }));
+  const filteredMonsters = monsters.filter( monster => 
+    monster.name.toLowerCase().includes(searchField.toLowerCase())  
+  );
+
+  let content;
+
+  if (isLoading){
+    content = (<p>Loading data from server.....</p>);
+  }else if (isSuccess){
+    content = (
+      <CardList monsters={filteredMonsters} />
+    )
+  } else if (isError){
+    content = (<p>{error.toString()}</p>)
   }
 
-  handleChange = (e) => {
-    // if it was a normal function defined in the same way as render and componentDidMount
-    // then we wouldn't have been able to use this as js doesn't automatically bind this
-    // to our custom function but as we are utilizing the feature of es6 , we can use 
-    // arrow function which automatically binds this context to the function
-    this.setState({ searchField: e.target.value}); 
-  }
-
-  render() {
-    const { monsters, searchField } = this.state;
-    const filteredMonsters = monsters.filter( monster => 
-      monster.name.toLowerCase().includes(searchField.toLowerCase())  
-    );
-    return (
-      <div className="App">
-        <div className="header">
-          <h1>Monsters Rolodex</h1>
-          <SearchBox 
-            placeholder="Search Monsters"
-            handleChange={this.handleChange}/>
-        </div>
-        <CardList monsters={filteredMonsters} />
+  return (
+    <div className="App">
+      <div className="header">
+        <h1>Monsters Rolodex</h1>
+        <SearchBox 
+          placeholder="Search Monsters"
+          handleChange={handleChange}/>
       </div>
-    );
-  }
+      {content}
+    </div>
+  );
 }
 
 export default App;
