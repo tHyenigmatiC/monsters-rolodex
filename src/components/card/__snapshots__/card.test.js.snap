@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Card Component Rendering Card Component 1`] = `
+exports[`Card Component take Snapshot 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
@@ -10,11 +10,14 @@ Object {
       >
         <img
           alt="monster"
-          src="https://robohash.org/undefined?set=set1&size=180x180"
+          src="https://robohash.org/1?set=set1&size=180x180"
         />
-        <h2 />
+        <h2>
+          Monster
+        </h2>
         <p>
            
+          something@monsters.com
            
         </p>
       </div>
@@ -26,11 +29,14 @@ Object {
     >
       <img
         alt="monster"
-        src="https://robohash.org/undefined?set=set1&size=180x180"
+        src="https://robohash.org/1?set=set1&size=180x180"
       />
-      <h2 />
+      <h2>
+        Monster
+      </h2>
       <p>
          
+        something@monsters.com
          
       </p>
     </div>

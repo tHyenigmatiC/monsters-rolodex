@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Main Component Renders monsters rolodex header 1`] = `
+exports[`Main Component take snapshot 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
@@ -16,7 +16,7 @@ Object {
             0
           </button>
           <h1>
-            Monsters Rolodex
+            Monster Rolodex
           </h1>
           <form>
             <input
@@ -27,9 +27,9 @@ Object {
             />
           </form>
         </div>
-        <div
-          class="card-list"
-        />
+        <p>
+          Loading...
+        </p>
       </div>
     </div>
   </body>,
@@ -45,7 +45,7 @@ Object {
           0
         </button>
         <h1>
-          Monsters Rolodex
+          Monster Rolodex
         </h1>
         <form>
           <input
@@ -56,9 +56,9 @@ Object {
           />
         </form>
       </div>
-      <div
-        class="card-list"
-      />
+      <p>
+        Loading...
+      </p>
     </div>
   </div>,
   "debug": [Function],
@@ -111,6 +111,13 @@ Object {
   "queryByText": [Function],
   "queryByTitle": [Function],
   "rerender": [Function],
+  "store": Object {
+    "@@observable": [Function],
+    "dispatch": [Function],
+    "getState": [Function],
+    "replaceReducer": [Function],
+    "subscribe": [Function],
+  },
   "unmount": [Function],
 }
 `;

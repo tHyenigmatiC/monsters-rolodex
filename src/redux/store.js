@@ -5,10 +5,14 @@ import logger from "redux-logger";
 import monstersReducer from './monstersSlice';
 import searchReducer from './searchSlice';
 
-export const store = configureStore({
-    reducer: {
-        monsters: monstersReducer,
-        search: searchReducer
-    },
-    middleware: getDefaultMiddleware => getDefaultMiddleware().concat(logger)
-});
+export const setupStore = (preloadedState, isTesting = false) => {
+    return configureStore({
+        reducer: {
+            monsters: monstersReducer,
+            search: searchReducer
+        },
+        middleware: getDefaultMiddleware => 
+            isTesting ? getDefaultMiddleware() : getDefaultMiddleware().concat(logger),
+        preloadedState
+    });
+}

@@ -1,25 +1,26 @@
 import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-
-
-import "./App.css";
 
 // custom imports
+import "./App.css";
 import SearchBox from "./components/search-box/search-box.component";
 import CardList from "./components/card-list/card-list.component";
 import CounterButton from "./components/counter-button/counter-button.component";
 
+// dispatch and selector hooks
+import { useAppDispatch, useAppSelector } from "./app/hooks";
 
 // reduxjs toolkit actions
 import { setSearchField } from "./redux/searchSlice";
 import { fetchMonsters } from "./redux/monstersSlice";
 
-const App = () => {
+import { API_URL } from './api/api'
 
-  const dispatch = useDispatch();
+const App = ({ err }) => {
 
-  const { data, error, isLoading} = useSelector(state => state.monsters);
-  const { searchField } = useSelector(state => state.search);
+  const dispatch = useAppDispatch();
+
+  const { data, error, isLoading} = useAppSelector(state => state.monsters);
+  const { searchField } = useAppSelector(state => state.search);
 
   /* 
     ISSUE
@@ -36,13 +37,13 @@ const App = () => {
  */
   useEffect(() => {
     // dispatching thunk returns promise
-    const promise = dispatch(fetchMonsters());
+    const promise = dispatch(fetchMonsters(err ? '/err' : API_URL));
 
     // cleanup function
     return () => {
       promise.abort();
     }
-  }, [dispatch]);
+  }, [dispatch, err]);
   
   const handleChange = (e) => {
     dispatch(setSearchField(e.target.value));
@@ -52,7 +53,7 @@ const App = () => {
 
   if (isLoading){
     content = (<p>Loading...</p>)
-  } else if (data){
+  } else if (data.length){
     const filteredMonsters = data.filter( monster => 
       monster.name.toLowerCase().includes(searchField.toLowerCase())  
     );
@@ -60,15 +61,13 @@ const App = () => {
       <CardList monsters={filteredMonsters} />
     )
   } else if (error){
-    content = (
-      <p>Error: {error.toString()}</p>
-    )
+    content = (<p>Error</p>)
   }
   return (
     <div className="App">
       <div className="header">
         <CounterButton/>
-        <h1>Monsters Rolodex</h1>
+        <h1>Monster Rolodex</h1>
         <SearchBox 
           placeholder="Search Monsters"
           handleChange={handleChange}/>

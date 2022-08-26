@@ -9,7 +9,7 @@ const defaultProps = {
 
 // jest.setTimeout(30000);
 
-const setup = (jsx) => {
+const setup = () => {
     const user = userEvent.setup();
     const utils = render(<SearchBox { ...defaultProps }/>);
     const input = screen.getByPlaceholderText('Search Monsters');

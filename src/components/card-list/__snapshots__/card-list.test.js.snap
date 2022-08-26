@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CardList Component rendering cardlist component 1`] = `
+exports[`CardList Component It should take snapshot 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
@@ -24,6 +24,22 @@ Object {
              
           </p>
         </div>
+        <div
+          class="card-container"
+        >
+          <img
+            alt="monster"
+            src="https://robohash.org/2?set=set1&size=180x180"
+          />
+          <h2>
+            Chandra Bastola
+          </h2>
+          <p>
+             
+            chandra@gmail.com
+             
+          </p>
+        </div>
       </div>
     </div>
   </body>,
@@ -44,6 +60,22 @@ Object {
         <p>
            
           kapil@gmail.com
+           
+        </p>
+      </div>
+      <div
+        class="card-container"
+      >
+        <img
+          alt="monster"
+          src="https://robohash.org/2?set=set1&size=180x180"
+        />
+        <h2>
+          Chandra Bastola
+        </h2>
+        <p>
+           
+          chandra@gmail.com
            
         </p>
       </div>

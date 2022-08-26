@@ -11,8 +11,11 @@ const initialState = {
 
 export const fetchMonsters = createAsyncThunk(
     'monstes/fetchMonsters',
-    async () => {
-        const response = await apiCall('https://jsonplaceholder.typicode.com/users');
+    async (url, { rejectWithValue }) => {
+        const response = await apiCall(url);        
+        if(response.errorMessage){
+            return rejectWithValue(response.errorMessage)
+        }
         return response;
     }
 

@@ -1,18 +1,37 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import CardList from './card-list.component';
 
 const mockRobots = [
     {
         id: 1,
         name: 'Kapil Bastola',
-        username: 'inLoveWithReact',
         email: 'kapil@gmail.com'
-    }
+    },
+    {
+        id: 2,
+        name: 'Chandra Bastola',
+        email: 'chandra@gmail.com'
+    },
 ]
 
 describe('CardList Component', () => {
-    test('rendering cardlist component', () => {
+
+    test('It should take snapshot', () => {
         const view = render(<CardList monsters={mockRobots}/>);
         expect(view).toMatchSnapshot();
+    });
+
+    test('It should render the card list correctly with provided data', () => {
+        render(<CardList monsters={mockRobots}/>);
+        expect(screen.getByText('kapil@gmail.com')).toBeTruthy();
+        expect(screen.getByText('chandra@gmail.com')).toBeTruthy();
+        expect(screen.getAllByRole('heading').length).toEqual(2);
+        expect(screen.getAllByRole('img').length).toEqual(2);
+    });
+
+    test('It should show nothing if empty data provided', () => {
+        render(<CardList monsters={[]}/>);
+        expect(screen.queryAllByRole('heading').length).toEqual(0);
+        expect(screen.queryAllByRole('img').length).toEqual(0);
     });
 })
