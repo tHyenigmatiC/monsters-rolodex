@@ -1,15 +1,16 @@
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
-import reduxThunk from 'redux-thunk';
-import reduxLogger from 'redux-logger';
+import { legacy_createStore as createStore, combineReducers, applyMiddleware } from "redux";
+import thunk from 'redux-thunk';
+import logger from 'redux-logger';
 
 import { searchRobots, requestRobots } from "./reducer";
 
-const rootReducer = () => ({
-    searchRobots,
-    requestRobots 
+
+const rootReducer = combineReducers({
+    search: searchRobots,
+    monsters: requestRobots 
 })
 
-export const store = configureStore({
-    reducer: rootReducer,
-    middleware: [ ...getDefaultMiddleware(), reduxLogger, reduxThunk]
-});
+export const store = createStore(
+    rootReducer,
+    applyMiddleware(thunk, logger)
+);

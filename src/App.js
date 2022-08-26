@@ -1,4 +1,8 @@
 import { Component } from "react";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+
+
 import "./App.css";
 
 // custom imports
@@ -6,9 +10,15 @@ import SearchBox from "./components/search-box/search-box.component";
 import CardList from "./components/card-list/card-list.component";
 import CounterButton from "./components/counter-button/counter-button.component";
 
+// redux actions
+import { setSearchField, searchRobots} from './actions';
+
+// redux selector
+import { selectSearchField, selectMonsters } from './selectors';
+
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       monsters: [],
@@ -17,21 +27,15 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then((response) => response.json())
-      .then((users) => this.setState({ monsters: users }));
+    this.props.searchRobots();
   }
 
   handleChange = (e) => {
-    // if it was a normal function defined in the same way as render and componentDidMount
-    // then we wouldn't have been able to use this as js doesn't automatically bind this
-    // to our custom function but as we are utilizing the feature of es6 , we can use 
-    // arrow function which automatically binds this context to the function
-    this.setState({ searchField: e.target.value}); 
+    this.props.setSearchField(e.target.value);
   }
 
   render() {
-    const { monsters, searchField } = this.state;
+    const { monsters, searchField } = this.props;
     const filteredMonsters = monsters.filter( monster => 
       monster.name.toLowerCase().includes(searchField.toLowerCase())  
     );
@@ -50,4 +54,14 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+  setSearchField: text => dispatch(setSearchField(text)),
+  searchRobots: () => dispatch(searchRobots())
+});
+
+const mapStateToProps = createStructuredSelector({
+  searchField: selectSearchField,
+  monsters: selectMonsters
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
