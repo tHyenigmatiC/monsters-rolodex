@@ -22,6 +22,7 @@ const setup = () => {
 
 describe('SearchBox Testing', () => {
     test('renders SearchBox Component', () => {
+        expect.assertions(1);
         const { input } = setup();
         expect(input.placeholder).toBe('Search Monsters');
     });
@@ -31,13 +32,15 @@ describe('SearchBox Testing', () => {
         expect(view).toMatchSnapshot();
     })
 
-    test('It should allow to input user queries', () => {        
+    test('It should allow to input user queries', () => {    
+        expect.assertions(1);    
         const { input } = setup();
         fireEvent.change(input, { target: { value: 'Ervin'}});
         expect(input.value).toBe('Ervin');
     });
 
     test('It should be able to update the input value on every character change', async () => {
+        expect.assertions(3);
         const { input, user } = setup();
         // input text as kapila
         await user.type(input, 'Kapila');

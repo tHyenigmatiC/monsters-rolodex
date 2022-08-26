@@ -14,6 +14,7 @@ describe('Card Component', () => {
      });
 
      test('It should render the card correctly according to monster data passed', () => {
+      expect.assertions(2);
       render(<Card {...monster}/>);
       expect(screen.getByText('Monster')).toBeTruthy();
       expect(screen.getByText('something@monsters.com')).toBeTruthy();

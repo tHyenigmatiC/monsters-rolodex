@@ -22,6 +22,7 @@ describe('CardList Component', () => {
     });
 
     test('It should render the card list correctly with provided data', () => {
+        expect.assertions(4);
         render(<CardList monsters={mockRobots}/>);
         expect(screen.getByText('kapil@gmail.com')).toBeTruthy();
         expect(screen.getByText('chandra@gmail.com')).toBeTruthy();
@@ -30,6 +31,7 @@ describe('CardList Component', () => {
     });
 
     test('It should show nothing if empty data provided', () => {
+        expect.assertions(2);
         render(<CardList monsters={[]}/>);
         expect(screen.queryAllByRole('heading').length).toEqual(0);
         expect(screen.queryAllByRole('img').length).toEqual(0);

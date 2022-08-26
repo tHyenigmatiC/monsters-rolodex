@@ -10,12 +10,14 @@ describe('CounterButton Component', () => {
     });
 
     test('correctly increments the counter', async () => {
+        expect.assertions(2)
         const user = userEvent.setup();
         render(<CounterButton />);
         
         // find the count button
         const button = screen.getByRole('button');
-        
+        expect(button.textContent).toBe('Count: 0')
+
         // simulate click
         await user.dblClick(button);
         
